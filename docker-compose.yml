@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  server:
+    container_name: vintagestory
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VERSION: 1.18.3
+    network_mode: "host" # use host network for better performance
+    # networks:
+    #   - vintagestory
+    restart: unless-stopped
+    command: /var/vintagestory/start.sh
+    volumes:
+      - data:/var/vintagestory/data
+
+# networks:
+#   vintagestory:
+#     driver: host
+#     name: vintagestory_network
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "./data"
