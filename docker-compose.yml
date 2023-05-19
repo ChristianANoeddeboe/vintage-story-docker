@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        VERSION: 1.18.3
+        VERSION: 1.18.4
     network_mode: "host" # use host network for better performance
     # networks:
     #   - vintagestory
