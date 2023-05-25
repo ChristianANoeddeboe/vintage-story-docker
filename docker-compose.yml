@@ -10,17 +10,11 @@ services:
       args:
         VERSION: 1.18.5
     network_mode: "host" # use host network for better performance
-    # networks:
-    #   - vintagestory
     restart: unless-stopped
     command: /var/vintagestory/start.sh
     volumes:
       - data:/var/vintagestory/data
-
-# networks:
-#   vintagestory:
-#     driver: host
-#     name: vintagestory_network
+      - backup:/var/vintagestory/data/Backups
 
 volumes:
   data:
@@ -29,3 +23,9 @@ volumes:
       type: "none"
       o: "bind"
       device: "./data"
+  backup:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "/path/to/your/backup"
