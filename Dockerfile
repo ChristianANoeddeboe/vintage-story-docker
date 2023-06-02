@@ -29,7 +29,7 @@ RUN wget https://cdn.vintagestory.at/gamefiles/stable/vs_server_${VERSION}.tar.g
 # Extract the game server to the server directory
 RUN tar -xzf vs_server_${VERSION}.tar.gz -C server
 
-# Remove the archive
+# Remove the archive for space
 RUN rm vs_server_${VERSION}.tar.gz
 
 # Change directory to the server directory
