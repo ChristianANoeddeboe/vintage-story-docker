@@ -52,7 +52,7 @@ RUN sed -i "s/VSPATH='\/home\/vintagestory\/server'/VSPATH='\/var\/vintagestory\
 RUN sed -i "s/DATAPATH='var\/vintagestory\/data'/DATAPATH='\/var\/vintagestory\/data'/g" server.sh
 
 # Add a cron job to run the backup command daily at 01:00
-RUN (crontab -l 2>/dev/null; echo "0 1 * * * /var/vintagestory/backup.sh") | crontab -
+RUN echo "0 1 * * * /var/vintagestory/backup.sh" >> /etc/crontab
 
 # Run the cron daemon in the foreground
 CMD ["cron", "-f"]
