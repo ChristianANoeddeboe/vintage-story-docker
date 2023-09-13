@@ -3,12 +3,12 @@ version: "3.9"
 services:
   server:
     container_name: vintagestory
-    image: vintagestory:1.18.5
+    image: vintagestory:1.18.10
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        VERSION: 1.18.5
+        VERSION: 1.18.10
     network_mode: "host" # use host network for better performance
     restart: unless-stopped
     command: /var/vintagestory/start.sh

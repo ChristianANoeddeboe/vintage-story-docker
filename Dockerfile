@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 WORKDIR /var/vintagestory
 
@@ -8,6 +8,8 @@ COPY backup.sh backup.sh
 RUN apt update && apt upgrade -y
 
 RUN apt install -y screen wget curl cron
+
+RUN apt install -y dotnet-sdk-7.0
 
 RUN apt install -y gnupg ca-certificates
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
@@ -24,13 +26,13 @@ ARG VERSION
 RUN mkdir server
 
 # Download the game server
-RUN wget https://cdn.vintagestory.at/gamefiles/stable/vs_server_${VERSION}.tar.gz
+RUN wget https://cdn.vintagestory.at/gamefiles/stable/vs_server_linux-x64_${VERSION}.tar.gz
 
 # Extract the game server to the server directory
-RUN tar -xzf vs_server_${VERSION}.tar.gz -C server
+RUN tar -xzf vs_server_linux-x64_${VERSION}.tar.gz -C server
 
 # Remove the archive for space
-RUN rm vs_server_${VERSION}.tar.gz
+RUN rm vs_server_linux-x64_${VERSION}.tar.gz
 
 # Change directory to the server directory
 WORKDIR /var/vintagestory/server
